@@ -75,7 +75,7 @@ export default function AddTraining() {
         ))}
       </ul>
       <br />
-      <Link href="/posts/trainings"><a>View Trainings</a></Link>
+      <Link to="/workouts">View Workouts</Link>
     </div>
   );
 }

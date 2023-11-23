@@ -147,7 +147,7 @@ export default function WorkOuts() {
         </div>
       ))}
       <br />
-      <Link href="/posts/add-training"><a>Add Training</a></Link>
+      <Link to="/addtraining">ADD Trainings</Link>
     </div>
   );
 }

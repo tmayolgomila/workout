@@ -1,0 +1,71 @@
+/* navbar.css */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: black;
+    color: white;
+  }
+  
+  .nav-links {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: white;
+    margin: 0 1rem;
+  }
+  
+  .menu-icon {
+    cursor: pointer;
+    display: none;
+    flex-direction: column;
+  }
+  
+  .menu-icon span {
+    height: 3px;
+    width: 25px;
+    background-color: white;
+    margin: 6px 0;
+    display: block;
+    transition: 0.4s;
+  }
+  .homeTitle{
+    color: white;
+    text-decoration: none!important;
+  }
+  
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      text-align: left;
+      width: 100%;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      background-color: rgb(0, 0, 0);
+    }
+    .nav-links a{
+      padding: 0.8em;
+    }
+  
+    .nav-links.open {
+      display: flex;
+    }
+  
+    .menu-icon {
+      display: flex;
+    }
+    .hrMobile{
+
+      width: 100%;
+    }
+
+  }
+  
