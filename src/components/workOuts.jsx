@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function WorkOuts() {
+  const navigate = useNavigate();
   const [trainings, setTrainings] = useState([]);
   const [editingIndex, setEditingIndex] = useState(null);
   const [editedTitle, setEditedTitle] = useState('');
@@ -57,6 +58,11 @@ export default function WorkOuts() {
       [name]: value,
     };
     setEditedExercises(updatedExercises);
+  };
+
+  const handleSelectTraining = (index) => {
+    localStorage.setItem('selectedTrainingIndex', index);
+    navigate('/letsworkout');
   };
 
   return (
@@ -142,6 +148,9 @@ export default function WorkOuts() {
                 ))}
               </ul>
               <button onClick={() => handleEdit(index)}>Edit</button>
+              <button onClick={() => handleSelectTraining(index)}>
+                Select Training
+              </button>
             </div>
           )}
         </div>

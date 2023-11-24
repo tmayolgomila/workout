@@ -1,10 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-export default function LetsWorkout({ selectedTraining }) {
+export default function LetsWorkout() {
   const [selectedExercises, setSelectedExercises] = useState([]);
+  const [selectedTraining, setSelectedTraining] = useState(null);
+  const [allExercisesCompleted, setAllExercisesCompleted] = useState(false);
+
+  useEffect(() => {
+    const selectedTrainingIndex = localStorage.getItem('selectedTrainingIndex');
+
+    if (selectedTrainingIndex !== null) {
+      const index = parseInt(selectedTrainingIndex, 10);
+      const trainings = JSON.parse(localStorage.getItem('trainings')) || [];
+
+      setSelectedTraining(trainings[index]);
+    }
+
+    const storedProgress = localStorage.getItem('workoutProgress');
+    const initialProgress = storedProgress ? JSON.parse(storedProgress) : [];
+    setSelectedExercises(initialProgress);
+  }, []);
+
+  useEffect(() => {
+    const areAllExercisesCompleted = selectedTraining &&
+      selectedTraining.exercises.every((exercise) => selectedExercises.includes(exercise));
+
+    setAllExercisesCompleted(areAllExercisesCompleted);
+  }, [selectedExercises, selectedTraining]);
 
   const handleCheckboxChange = (exercise) => {
-    // Toggle the selected state of the exercise
     setSelectedExercises((prevSelectedExercises) => {
       if (prevSelectedExercises.includes(exercise)) {
         return prevSelectedExercises.filter((selectedExercise) => selectedExercise !== exercise);
@@ -13,6 +36,18 @@ export default function LetsWorkout({ selectedTraining }) {
       }
     });
   };
+
+  const handleFinishTraining = () => {
+    // Elimina el entrenamiento de la página LetsWorkout
+    setSelectedTraining(null);
+    setSelectedExercises([]);
+
+
+  };
+
+  if (!selectedTraining) {
+    return <div>Ve a Workouts para elegir otro entrenamiento.</div>;
+  }
 
   return (
     <div>
@@ -32,9 +67,12 @@ export default function LetsWorkout({ selectedTraining }) {
           </div>
         ))}
       </form>
-      <button onClick={() => console.log('Selected Exercises:', selectedExercises)}>
-        Start Workout
-      </button>
+      {allExercisesCompleted && (
+        <div>
+          <button onClick={handleFinishTraining}>Finalizar Entrenamiento</button>
+          <p>Ve a Workouts para elegir otro entrenamiento.</p>
+        </div>
+      )}
     </div>
   );
 }
