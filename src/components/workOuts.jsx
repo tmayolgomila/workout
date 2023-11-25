@@ -49,13 +49,13 @@ export default function WorkOuts() {
     setEditedExercises(updatedExercises);
   };
 
-  const handleInputChange = (e, exerciseIndex) => {
+  const handleInputChange = (e, exerciseIndex, fieldName) => {
     // Update the value of the edited exercise
-    const { name, value } = e.target;
+    const { value } = e.target;
     const updatedExercises = [...editedExercises];
     updatedExercises[exerciseIndex] = {
       ...updatedExercises[exerciseIndex],
-      [name]: value,
+      [fieldName]: value,
     };
     setEditedExercises(updatedExercises);
   };
@@ -72,6 +72,7 @@ export default function WorkOuts() {
         <div key={index}>
           {editingIndex === index ? (
             <div>
+              {/* Edited Title */}
               <label>
                 Edited Title:
                 <input
@@ -81,76 +82,104 @@ export default function WorkOuts() {
                 />
               </label>
               <br />
-              <label>
-                Edited Exercises:
-                {editedExercises.map((exercise, exerciseIndex) => (
-                  <div key={exerciseIndex}>
-                    {exercise.editMode ? (
-                      <div>
-                        <label>
-                          Exercise:
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>Exercise</th>
+                    <th>Weight (lbs)</th>
+                    <th>Repetitions</th>
+                    <th>Sets</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {editedExercises.map((exercise, exerciseIndex) => (
+                    <tr key={exerciseIndex}>
+                      <td>
+                        {exercise.editMode ? (
                           <input
                             type="text"
                             value={exercise.exercise}
-                            onChange={(e) => handleInputChange(e, exerciseIndex)}
+                            onChange={(e) => handleInputChange(e, exerciseIndex, 'exercise')}
                           />
-                        </label>
-                        <label>
-                          Weight (lbs):
+                        ) : (
+                          exercise.exercise
+                        )}
+                      </td>
+                      <td>
+                        {exercise.editMode ? (
                           <input
                             type="number"
                             value={exercise.weight}
-                            onChange={(e) => handleInputChange(e, exerciseIndex)}
+                            onChange={(e) => handleInputChange(e, exerciseIndex, 'weight')}
                           />
-                        </label>
-                        <label>
-                          Repetitions:
+                        ) : (
+                          exercise.weight
+                        )}
+                      </td>
+                      <td>
+                        {exercise.editMode ? (
                           <input
                             type="number"
                             value={exercise.repetitions}
-                            onChange={(e) => handleInputChange(e, exerciseIndex)}
+                            onChange={(e) => handleInputChange(e, exerciseIndex, 'repetitions')}
                           />
-                        </label>
-                        <label>
-                          Sets:
+                        ) : (
+                          exercise.repetitions
+                        )}
+                      </td>
+                      <td>
+                        {exercise.editMode ? (
                           <input
                             type="number"
                             value={exercise.sets}
-                            onChange={(e) => handleInputChange(e, exerciseIndex)}
+                            onChange={(e) => handleInputChange(e, exerciseIndex, 'sets')}
                           />
-                        </label>
-                      </div>
-                    ) : (
-                      <span>
-                        {exercise.exercise}, {exercise.weight} lbs, {exercise.repetitions}, {exercise.sets}
-                      </span>
-                    )}
-                    <button onClick={() => handleEditExercise(exerciseIndex)}>
-                      {exercise.editMode ? 'Save' : 'Edit'}
-                    </button>
-                  </div>
-                ))}
-              </label>
+                        ) : (
+                          exercise.sets
+                        )}
+                      </td>
+                      <td>
+                        <button onClick={() => handleEditExercise(exerciseIndex)}>
+                          {exercise.editMode ? 'Save' : 'Edit'}
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+
               <button onClick={handleSaveEdit}>Save Edit</button>
               <button onClick={handleCancelEdit}>Cancel Edit</button>
             </div>
           ) : (
             <div>
               <h3>{training.title}</h3>
-              <ul>
-                {training.exercises.map((exercise, exerciseIndex) => (
-                  <li key={exerciseIndex} onDoubleClick={() => handleEditExercise(exerciseIndex)}>
-                    <strong>Exercise:</strong> {exercise.exercise},{' '}
-                    <strong>Weight:</strong> {exercise.weight} lbs,{' '}
-                    <strong>Repetitions:</strong> {exercise.repetitions},{' '}
-                    <strong>Sets:</strong> {exercise.sets}
-                  </li>
-                ))}
-              </ul>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Exercise</th>
+                    <th>Weight (lbs)</th>
+                    <th>Repetitions</th>
+                    <th>Sets</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {training.exercises.map((exercise, exerciseIndex) => (
+                    <tr key={exerciseIndex} onDoubleClick={() => handleEditExercise(exerciseIndex)}>
+                      <td>{exercise.exercise}</td>
+                      <td>{exercise.weight} lbs</td>
+                      <td>{exercise.repetitions}</td>
+                      <td>{exercise.sets}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+
+              {/* Edit and Select Training Buttons */}
               <button onClick={() => handleEdit(index)}>Edit</button>
-              <button onClick={() => handleSelectTraining(index)}>
-                Select Training
-              </button>
+              <button onClick={() => handleSelectTraining(index)}>Select Training</button>
             </div>
           )}
         </div>
