@@ -67,7 +67,7 @@ export default function WorkOuts() {
 
   return (
     <div>
-      <h1>List of Trainings</h1>
+      <h1>My Workouts 💪</h1>
       {trainings.map((training, index) => (
         <div key={index}>
           {editingIndex === index ? (

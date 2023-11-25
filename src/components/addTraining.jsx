@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/addTraining.css'
 
 export default function AddTraining() {
   const [trainingTitle, setTrainingTitle] = useState('');
@@ -31,12 +32,13 @@ export default function AddTraining() {
   };
 
   return (
-    <div>
-      <h1>Add Training</h1>
-      <label>
+    <div className='addTrainingContainer'>
+      <h1 className='title'>ADD TRAINING✍️</h1>
+   
+        <label>
         Training Title:
         <input type="text" value={trainingTitle} onChange={(e) => setTrainingTitle(e.target.value)} />
-      </label>
+        </label>
       <br />
       <label>
         Exercise:
@@ -58,19 +60,23 @@ export default function AddTraining() {
         <input type="number" value={sets} onChange={(e) => setSets(e.target.value)} />
       </label>
       <br />
-      <button onClick={handleAddExercise}>Add Exercise</button>
+      <button className='buttonForm' onClick={handleAddExercise}>Add Exercise</button>
       <br />
       <br />
-      <button onClick={handleAddTraining}>Add Training</button>
+      <button className='buttonForm' onClick={handleAddTraining}>Add Training</button>
       <br />
       <br />
+      <section>
+        <h4><span className='exercisesTable'>Exercise</span> <span className='exercisesTable'>Weight</span>
+         <span className='exercisesTable'>Repetitions</span> <span className='exercisesTable'>Sets</span></h4>
+      </section>
       <ul>
         {exercises.map((exercise, index) => (
-          <li key={index}>
-            <strong>Exercise:</strong> {exercise.exercise},{' '}
-            <strong>Weight:</strong> {exercise.weight} lbs,{' '}
-            <strong>Repetitions:</strong> {exercise.repetitions},{' '}
-            <strong>Sets:</strong> {exercise.sets}
+          <li className='exercisesList' key={index}>
+             {exercise.exercise}
+             {exercise.weight}
+             {exercise.repetitions}
+             {exercise.sets}
           </li>
         ))}
       </ul>
