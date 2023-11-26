@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import '../styles/workOuts.css'
 
 export default function WorkOuts() {
   const navigate = useNavigate();
@@ -75,7 +76,7 @@ export default function WorkOuts() {
   }
 
   return (
-    <div>
+    <div className='workoutsContainer'>
       <h1>My Workouts 💪</h1>
       {trainings.map((training, index) => (
         <div key={index}>
