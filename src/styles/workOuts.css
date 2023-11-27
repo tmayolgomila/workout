@@ -1,29 +1,68 @@
-.workoutsContainer{
+.workoutsContainer {
   padding: 1em;
   text-align: center;
   justify-content: center;
 }
 
-.exercisesTable{
-    width: 100%;
-    border-collapse: collapse;
- }
- .exercisesTable th, .exercisesTable td {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-  
-  .exercisesTable th {
-    background-color: #f2f2f2;
-  }
-  
-  .exercisesTable td.exerciseTitle{
-    width: 40%; 
+.exercisesTable {
+  width: 100%;
+  border-collapse: collapse;
 }
-.exercisesTable td.numeral{
-    width: 20%; 
+
+.exercisesTable th,
+.exercisesTable td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
 }
- .exercisesList{
-    list-style: none;
- }
+
+.exercisesTable th {
+  background-color: #f2f2f2;
+}
+
+.exercisesTable td.exerciseTitle {
+  width: 40%;
+}
+
+.exercisesTable td.numeral {
+  width: 20%;
+}
+
+.exercisesList {
+  list-style: none;
+}
+
+
+.inputWorkoutTitle {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid black;
+  margin-bottom: 1em;
+}
+
+
+.inputWorkout {
+  width: 100%;
+  border: none;
+  margin-bottom: 1em;
+  border-bottom: 1px solid black;
+}
+
+.buttonSection {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+.workoutButton{
+  border: none;
+  border-radius: 6px;
+  color: white;
+  width: 100px;
+  height: 50px;
+  background: black;
+}
+
+.workoutButton.delete{
+  background: #BB2525;
+}

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import '../styles/letsWorkout.css'
+import { Link } from 'react-router-dom';
 
 export default function LetsWorkout() {
   const [selectedExercises, setSelectedExercises] = useState([]);
@@ -38,7 +40,6 @@ export default function LetsWorkout() {
   };
 
   const handleFinishTraining = () => {
-    // Elimina el entrenamiento de la página LetsWorkout
     setSelectedTraining(null);
     setSelectedExercises([]);
 
@@ -46,11 +47,18 @@ export default function LetsWorkout() {
   };
 
   if (!selectedTraining) {
-    return <div>Ve a Workouts para elegir otro entrenamiento.</div>;
+    return (
+    <div className='letsWorkoutContainer'>
+        Go to Workouts to choose another workout.
+        <br/>
+        <br/>
+      <Link to="/workouts" className='workoutsLink'>Workouts</Link>
+    </div>
+    )
   }
 
   return (
-    <div>
+    <div className='letsWorkoutContainer'>
       <h1>Let's Workout</h1>
       <h2>{selectedTraining.title}</h2>
       <form>
@@ -69,8 +77,9 @@ export default function LetsWorkout() {
       </form>
       {allExercisesCompleted && (
         <div>
-          <button onClick={handleFinishTraining}>Finalizar Entrenamiento</button>
-          <p>Ve a Workouts para elegir otro entrenamiento.</p>
+          <button className="buttonForm" onClick={handleFinishTraining}>End Training</button>
+          <p>Go to Workouts to choose another workout.</p>
+          <Link to="/workouts" className='workoutsLink'>Workouts</Link>
         </div>
       )}
     </div>

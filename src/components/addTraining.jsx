@@ -34,11 +34,12 @@ export default function AddTraining() {
 
   return (
     <div className="addTrainingContainer">
-      <h1 className="title">ADD TRAINING✍️</h1>
+      <h1>ADD TRAINING✍️</h1>
 
       <label>
         Training Title:
         <input
+          className="inputAddTraining"
           type="text"
           value={trainingTitle}
           onChange={(e) => setTrainingTitle(e.target.value)}
@@ -48,6 +49,7 @@ export default function AddTraining() {
       <label>
         Exercise:
         <input
+          className="inputAddTraining"
           type="text"
           value={exercise}
           onChange={(e) => setExercise(e.target.value)}
@@ -57,6 +59,7 @@ export default function AddTraining() {
       <label>
         Weight (kg):
         <input
+          className="inputAddTraining"
           type="number"
           value={weight}
           onChange={(e) => setWeight(e.target.value)}
@@ -66,6 +69,7 @@ export default function AddTraining() {
       <label>
         Repetitions:
         <input
+          className="inputAddTraining"
           type="number"
           value={repetitions}
           onChange={(e) => setRepetitions(e.target.value)}
@@ -75,6 +79,7 @@ export default function AddTraining() {
       <label>
         Sets:
         <input
+          className="inputAddTraining"
           type="number"
           value={sets}
           onChange={(e) => setSets(e.target.value)}

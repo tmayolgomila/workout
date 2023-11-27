@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import '../styles/workOuts.css'
+import '../styles/workOuts.css';
 
 export default function WorkOuts() {
   const navigate = useNavigate();
@@ -41,14 +41,7 @@ export default function WorkOuts() {
     setEditedExercises([]);
   };
 
-  const handleEditExercise = (exerciseIndex) => {
-    const updatedExercises = [...editedExercises];
-    updatedExercises[exerciseIndex].editMode = !updatedExercises[exerciseIndex].editMode;
-    setEditedExercises(updatedExercises);
-  };
-
   const handleInputChange = (e, exerciseIndex, fieldName) => {
-
     const { value } = e.target;
     const updatedExercises = [...editedExercises];
     updatedExercises[exerciseIndex] = {
@@ -64,16 +57,22 @@ export default function WorkOuts() {
   };
 
   const handleDeleteTraining = (index) => {
-    const updatedTrainings = [...trainings];
-    updatedTrainings.splice(index, 1);
-    setTrainings(updatedTrainings);
-    
-    localStorage.setItem('trainings', JSON.stringify(updatedTrainings));
-  
-    setEditingIndex(null);
-    setEditedTitle('');
-    setEditedExercises([]);
-  }
+    const shouldDelete = window.confirm('Are you sure you want to delete this training?');
+
+    if (shouldDelete) {
+      const updatedTrainings = [...trainings];
+      updatedTrainings.splice(index, 1);
+      setTrainings(updatedTrainings);
+
+      localStorage.setItem('trainings', JSON.stringify(updatedTrainings));
+
+      setEditingIndex(null);
+      setEditedTitle('');
+      setEditedExercises([]);
+    } else {
+      // Handle cancel deletion
+    }
+  };
 
   return (
     <div className='workoutsContainer'>
@@ -82,10 +81,10 @@ export default function WorkOuts() {
         <div key={index}>
           {editingIndex === index ? (
             <div>
-
               <label>
                 Edit Title:
                 <input
+                  className='inputWorkoutTitle'
                   type="text"
                   value={editedTitle}
                   onChange={(e) => setEditedTitle(e.target.value)}
@@ -100,69 +99,55 @@ export default function WorkOuts() {
                     <th>Weight</th>
                     <th>Reps</th>
                     <th>Sets</th>
-                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {editedExercises.map((exercise, exerciseIndex) => (
-                    <tr key={exerciseIndex} className="exerciseslist" >
+                    <tr key={exerciseIndex} className="exerciseslist">
                       <td className="exerciseTitle">
-                        {exercise.editMode ? (
-                          <input
-                            type="text"
-                            value={exercise.exercise}
-                            onChange={(e) => handleInputChange(e, exerciseIndex, 'exercise')}
-                          />
-                        ) : (
-                          exercise.exercise
-                        )}
+                        <input
+                          className='inputWorkout'
+                          type="text"
+                          value={exercise.exercise}
+                          onChange={(e) => handleInputChange(e, exerciseIndex, 'exercise')}
+                        />
                       </td>
                       <td className="numeral">
-                        {exercise.editMode ? (
-                          <input
-                            type="number"
-                            value={exercise.weight}
-                            onChange={(e) => handleInputChange(e, exerciseIndex, 'weight')}
-                          />
-                        ) : (
-                          exercise.weight
-                        )}
+                        <input
+                          className='inputWorkout'
+                          type="number"
+                          value={exercise.weight}
+                          onChange={(e) => handleInputChange(e, exerciseIndex, 'weight')}
+                        />
                       </td>
                       <td className="numeral">
-                        {exercise.editMode ? (
-                          <input
-                            type="number"
-                            value={exercise.repetitions}
-                            onChange={(e) => handleInputChange(e, exerciseIndex, 'repetitions')}
-                          />
-                        ) : (
-                          exercise.repetitions
-                        )}
+                        <input
+                          className='inputWorkout'
+                          type="number"
+                          value={exercise.repetitions}
+                          onChange={(e) => handleInputChange(e, exerciseIndex, 'repetitions')}
+                        />
                       </td>
                       <td className="numeral">
-                        {exercise.editMode ? (
-                          <input
-                            type="number"
-                            value={exercise.sets}
-                            onChange={(e) => handleInputChange(e, exerciseIndex, 'sets')}
-                          />
-                        ) : (
-                          exercise.sets
-                        )}
-                      </td>
-                      <td>
-                        <button onClick={() => handleEditExercise(exerciseIndex)}>
-                          {exercise.editMode ? 'Save' : 'Edit'}
-                        </button>
+                        <input
+                          className='inputWorkout'
+                          type="number"
+                          value={exercise.sets}
+                          onChange={(e) => handleInputChange(e, exerciseIndex, 'sets')}
+                        />
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
 
-              <button onClick={handleSaveEdit}>Save Edit</button>
-              <button onClick={() => handleDeleteTraining(index)}>Delete Training</button>
-              <button onClick={handleCancelEdit}>Cancel Edit</button>
+              <div className='buttonSection'>
+
+                <button className='workoutButton' onClick={handleSaveEdit}>Save Edit</button>
+                <button className='workoutButton' onClick={handleCancelEdit}>Cancel</button>
+                <button className='workoutButton delete' onClick={() => handleDeleteTraining(index)}>Delete Training</button>
+                
+              </div>
             </div>
           ) : (
             <div>
@@ -178,7 +163,7 @@ export default function WorkOuts() {
                 </thead>
                 <tbody>
                   {training.exercises.map((exercise, exerciseIndex) => (
-                    <tr key={exerciseIndex} onDoubleClick={() => handleEditExercise(exerciseIndex)} className="exerciseslist" >
+                    <tr key={exerciseIndex} className="exerciseslist">
                       <td className="exerciseTitle">{exercise.exercise}</td>
                       <td className="numeral">{exercise.weight}</td>
                       <td className="numeral">{exercise.repetitions}</td>
@@ -188,15 +173,19 @@ export default function WorkOuts() {
                 </tbody>
               </table>
 
-              <button onClick={() => handleEdit(index)}>Edit</button>
-              <button onClick={() => handleDeleteTraining(index)}>Delete Training</button>
-              <button onClick={() => handleSelectTraining(index)}>Select Training</button>
+              <div className='buttonSection'>
+
+                <button className='workoutButton' onClick={() => handleEdit(index)}>Edit</button>
+                <button className='workoutButton' onClick={() => handleSelectTraining(index)}>Select</button>
+                <button className='workoutButton delete' onClick={() => handleDeleteTraining(index)}>Delete</button>
+                
+              </div>
             </div>
           )}
         </div>
       ))}
       <br />
-      <Link to="/addtraining">ADD Trainings</Link>
+      <Link to="/addtraining" className='workoutsLink'>ADD Trainings</Link>
     </div>
   );
 }
