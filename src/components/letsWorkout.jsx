@@ -64,13 +64,17 @@ export default function LetsWorkout() {
       <form>
         {selectedTraining.exercises.map((exercise, index) => (
           <div key={index}>
-            <label>
-              <input
+            <label  style={{ textAlign: 'left' }}>
+              <input 
                 type="checkbox"
                 checked={selectedExercises.includes(exercise)}
                 onChange={() => handleCheckboxChange(exercise)}
               />
-              {exercise.exercise}, {exercise.weight} lbs, {exercise.repetitions}, {exercise.sets}
+              <span>&nbsp;{exercise.exercise} <br/>{exercise.weight} kg {exercise.repetitions} Reps {exercise.sets} Sets</span>
+              
+              <br/>
+
+              <hr/>
             </label>
           </div>
         ))}
