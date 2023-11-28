@@ -1,5 +1,5 @@
 .workoutsContainer {
-  padding: 1em;
+  padding: 0.5em;
   text-align: center;
   justify-content: center;
 }
@@ -61,6 +61,19 @@
   width: 100px;
   height: 50px;
   background: black;
+}
+.deleteButton{
+  background: none;
+  border:none;
+  color: #BB2525;
+  font-size: 22px;
+
+}
+.deleteButtonContainer {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  border: none!important;
 }
 
 .workoutButton.delete{

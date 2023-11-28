@@ -109,7 +109,6 @@ export default function WorkOuts() {
                     <th>Weight</th>
                     <th>Reps</th>
                     <th>Sets</th>
-                    <th>Action</th> {/* Nueva columna para botones de acción */}
                   </tr>
                 </thead>
                 <tbody>
@@ -147,9 +146,9 @@ export default function WorkOuts() {
                           onChange={(e) => handleInputChange(e, exerciseIndex, 'sets')}
                         />
                       </td>
-                      <td>
-                        <button className='workoutButton delete' onClick={() => handleRemoveExercise(exerciseIndex)}>
-                          Delete Exercise
+                      <td className='deleteButtonContainer'>
+                        <button className='deleteButton' onClick={() => handleRemoveExercise(exerciseIndex)}>
+                        <ion-icon name="trash-outline"></ion-icon>
                         </button>
                       </td>
                     </tr>
@@ -159,7 +158,7 @@ export default function WorkOuts() {
   
               <div className='buttonSection'>
                 <button className='workoutButton' onClick={handleSaveEdit}>Save Edit</button>
-                <button className='workoutButton' onClick={handleAddExercise}>Add Exercise</button>
+                  <button className='workoutButton' onClick={handleAddExercise}>Add Exercise</button>
                 <button className='workoutButton' onClick={handleCancelEdit}>Cancel</button>
                 <button className='workoutButton delete' onClick={() => handleDeleteTraining(index)}>Delete Training</button>
               </div>

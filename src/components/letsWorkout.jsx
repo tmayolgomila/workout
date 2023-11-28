@@ -59,31 +59,32 @@ export default function LetsWorkout() {
 
   return (
     <div className='letsWorkoutContainer'>
-      <h1>Let's Workout</h1>
-      <h2>{selectedTraining.title}</h2>
+      <h3>Workout Tracking</h3>
+      <h4>{selectedTraining.title}</h4>
+      <hr />
       <form>
         {selectedTraining.exercises.map((exercise, index) => (
           <div key={index}>
-            <label  style={{ textAlign: 'left' }}>
+
+            <label style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', marginBottom: '1em' }}>
               <input 
+                className='checkBoxLetsWorkout'
                 type="checkbox"
                 checked={selectedExercises.includes(exercise)}
                 onChange={() => handleCheckboxChange(exercise)}
               />
-              <span>&nbsp;{exercise.exercise} <br/>{exercise.weight} kg {exercise.repetitions} Reps {exercise.sets} Sets</span>
-              
-              <br/>
-
-              <hr/>
+              <span className='spanLetsWorkout'>
+                <strong>{exercise.exercise}</strong> {exercise.weight} kg {exercise.repetitions} Reps {exercise.sets} Sets
+              </span>
             </label>
+
           </div>
         ))}
       </form>
       {allExercisesCompleted && (
         <div>
           <button className="buttonForm" onClick={handleFinishTraining}>End Training</button>
-          <p>Go to Workouts to choose another workout.</p>
-          <Link to="/workouts" className='workoutsLink'>Workouts</Link>
+
         </div>
       )}
     </div>

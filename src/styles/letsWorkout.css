@@ -1,5 +1,11 @@
 .letsWorkoutContainer{
-    padding: 1em;
+    padding: 0.5em;
     text-align: center;
     justify-content: center;
+}
+.checkBoxLetsWorkout{
+    zoom: 1.2; 
+}
+.spanLetsWorkout{
+    margin-left: 0.5em;
 }
