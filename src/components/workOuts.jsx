@@ -74,6 +74,16 @@ export default function WorkOuts() {
     }
   };
 
+  const handleAddExercise = () => {
+    setEditedExercises([...editedExercises, { exercise: '', weight: 0, repetitions: 0, sets: 0 }]);
+  };
+
+  const handleRemoveExercise = (exerciseIndex) => {
+    const updatedExercises = [...editedExercises];
+    updatedExercises.splice(exerciseIndex, 1);
+    setEditedExercises(updatedExercises);
+  };
+
   return (
     <div className='workoutsContainer'>
       <h1>My Workouts 💪</h1>
@@ -91,7 +101,7 @@ export default function WorkOuts() {
                 />
               </label>
               <br />
-
+  
               <table className="exercisesTable">
                 <thead>
                   <tr>
@@ -99,6 +109,7 @@ export default function WorkOuts() {
                     <th>Weight</th>
                     <th>Reps</th>
                     <th>Sets</th>
+                    <th>Action</th> {/* Nueva columna para botones de acción */}
                   </tr>
                 </thead>
                 <tbody>
@@ -136,17 +147,21 @@ export default function WorkOuts() {
                           onChange={(e) => handleInputChange(e, exerciseIndex, 'sets')}
                         />
                       </td>
+                      <td>
+                        <button className='workoutButton delete' onClick={() => handleRemoveExercise(exerciseIndex)}>
+                          Delete Exercise
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-
+  
               <div className='buttonSection'>
-
                 <button className='workoutButton' onClick={handleSaveEdit}>Save Edit</button>
+                <button className='workoutButton' onClick={handleAddExercise}>Add Exercise</button>
                 <button className='workoutButton' onClick={handleCancelEdit}>Cancel</button>
                 <button className='workoutButton delete' onClick={() => handleDeleteTraining(index)}>Delete Training</button>
-                
               </div>
             </div>
           ) : (
@@ -172,13 +187,11 @@ export default function WorkOuts() {
                   ))}
                 </tbody>
               </table>
-
+  
               <div className='buttonSection'>
-
                 <button className='workoutButton' onClick={() => handleEdit(index)}>Edit</button>
                 <button className='workoutButton' onClick={() => handleSelectTraining(index)}>Select</button>
                 <button className='workoutButton delete' onClick={() => handleDeleteTraining(index)}>Delete</button>
-                
               </div>
             </div>
           )}
@@ -188,4 +201,5 @@ export default function WorkOuts() {
       <Link to="/addtraining" className='workoutsLink'>ADD Trainings</Link>
     </div>
   );
+  
 }

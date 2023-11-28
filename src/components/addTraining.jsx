@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/addTraining.css";
+import predefinedTrainings from '../trainings/defaultTrainings'
+
 
 export default function AddTraining() {
   const [trainingTitle, setTrainingTitle] = useState("");
@@ -30,6 +32,11 @@ export default function AddTraining() {
 
     setTrainingTitle("");
     setExercises([]);
+  };
+
+  const handleAddPredefinedTraining = (predefinedTraining) => {
+    setTrainingTitle(predefinedTraining.title);
+    setExercises(predefinedTraining.exercises);
   };
 
   return (
@@ -118,6 +125,21 @@ export default function AddTraining() {
           </tbody>
         </table>
       </section>
+      <br />
+      <div className="predefinedTrainings">
+        <h2>Choose a Predefined Training:</h2>
+        <ul>
+          {predefinedTrainings.map((predefinedTraining, index) => (
+            <li className="predefinedTrainingsList" key={index}>
+              <button className="buttonForm" onClick={() => handleAddPredefinedTraining(predefinedTraining)}>
+                {predefinedTraining.title}
+              </button>
+              <br />
+              <br />
+            </li>
+          ))}
+        </ul>
+      </div>
       <br />
       <Link to="/workouts" className="workoutsLink">View Workouts👉</Link>
     </div>

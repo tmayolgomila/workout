@@ -36,7 +36,16 @@
  .exercisesList{
     list-style: none;
  }
+ .predefinedTrainings{
+   width: 100%;
 
+ }
+ ul{
+   margin-left:-2em;
+ }
+ .predefinedTrainingsList{
+   list-style: none;
+ }
 
 
 
