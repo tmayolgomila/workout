@@ -1,0 +1,9 @@
+.homeContainer{
+    padding: 1em;
+    text-align: center;
+    justify-content: center;
+}
+.buttonHome{
+    margin-top: 2em; 
+    margin-bottom: 2em; 
+}
