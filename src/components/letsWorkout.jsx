@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/letsWorkout.css'
 import { Link } from 'react-router-dom';
+import { Toaster, toast } from 'sonner'
 
 export default function LetsWorkout() {
   const [selectedExercises, setSelectedExercises] = useState([]);
@@ -42,18 +43,17 @@ export default function LetsWorkout() {
   const handleFinishTraining = () => {
     setSelectedTraining(null);
     setSelectedExercises([]);
-
-
   };
 
   if (!selectedTraining) {
     return (
-    <div className='letsWorkoutContainer'>
+      <div className='letsWorkoutContainer'>
         Go to Workouts to choose another workout.
-        <br/>
-        <br/>
-      <Link to="/workouts" className='workoutsLink'>Workouts</Link>
-    </div>
+        <br />
+        <br />
+        <Link to="/workouts" className='workoutsLink'>Workouts</Link>
+    
+      </div>
     )
   }
 
@@ -63,28 +63,62 @@ export default function LetsWorkout() {
       <h4>{selectedTraining.title}</h4>
       <hr />
       <form>
-        {selectedTraining.exercises.map((exercise, index) => (
-          <div key={index}>
-
-            <label style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', marginBottom: '1em' }}>
-              <input 
-                className='checkBoxLetsWorkout'
-                type="checkbox"
-                checked={selectedExercises.includes(exercise)}
-                onChange={() => handleCheckboxChange(exercise)}
-              />
+  <table className="exercisesTable">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Exercise</th>
+        <th>Weight</th>
+        <th>Reps</th>
+        <th>Sets</th>
+      </tr>
+    </thead>
+    <tbody>
+      {selectedTraining.exercises.map((exercise, index) => (
+        <tr key={index}>
+          <td>
+          <Toaster />
+            <input
+              className='checkBoxLetsWorkout'
+              type="checkbox"
+              checked={selectedExercises.includes(exercise)}
+              onChange={() => handleCheckboxChange(exercise)}
+              onClick={() => toast('Exercise completed')}
+            />
+          </td>
+          <td>
+            <span className='spanLetsWorkout'>
+              <strong>{exercise.exercise}</strong>
+            </span>
+          </td>
+          <td>
+            {exercise.weight > 0 && (
               <span className='spanLetsWorkout'>
-                <strong>{exercise.exercise}</strong> {exercise.weight} kg {exercise.repetitions} Reps {exercise.sets} Sets
+                {exercise.weight} 
               </span>
-            </label>
+            )}
+          </td>
+          <td>
+            <span className='spanLetsWorkout'>
+              {exercise.repetitions}
+            </span>
+          </td>
+          <td>
+            <span className='spanLetsWorkout'>
+              {exercise.sets}
+            </span>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</form>
 
-          </div>
-        ))}
-      </form>
       {allExercisesCompleted && (
         <div>
-          <button className="buttonForm" onClick={handleFinishTraining}>End Training</button>
 
+          <button className="buttonForm endTrainingButton" onClick={handleFinishTraining}>End Training</button>
+          
         </div>
       )}
     </div>

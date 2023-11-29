@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/addTraining.css";
 import predefinedTrainings from '../trainings/defaultTrainings'
+import { Toaster, toast } from 'sonner'
 
 
 export default function AddTraining() {
@@ -29,9 +30,10 @@ export default function AddTraining() {
     const updatedTrainings = [...existingTrainings, newTraining];
 
     localStorage.setItem("trainings", JSON.stringify(updatedTrainings));
-
+    toast.success('New training added')
     setTrainingTitle("");
     setExercises([]);
+
   };
 
   const handleAddPredefinedTraining = (predefinedTraining) => {
@@ -98,6 +100,7 @@ export default function AddTraining() {
       </button>
       <br />
       <br />
+      <Toaster richColors  />
       <button className="buttonForm" onClick={handleAddTraining}>
         Add Training
       </button>
