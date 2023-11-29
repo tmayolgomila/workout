@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../styles/addTraining.css";
 import predefinedTrainings from '../trainings/defaultTrainings'
 import { Toaster, toast } from 'sonner'
+import { useTranslation } from "react-i18next";
 
 
 export default function AddTraining() {
@@ -12,6 +13,7 @@ export default function AddTraining() {
   const [weight, setWeight] = useState("");
   const [repetitions, setRepetitions] = useState("");
   const [sets, setSets] = useState("");
+  const { t } = useTranslation();
 
   const handleAddExercise = () => {
     const newExercise = { exercise, weight, repetitions, sets };
@@ -30,7 +32,7 @@ export default function AddTraining() {
     const updatedTrainings = [...existingTrainings, newTraining];
 
     localStorage.setItem("trainings", JSON.stringify(updatedTrainings));
-    toast.success('New training added')
+    toast.success(t('newTrainingAdd'))
     setTrainingTitle("");
     setExercises([]);
 
@@ -43,10 +45,10 @@ export default function AddTraining() {
 
   return (
     <div className="addTrainingContainer">
-      <h1>ADD TRAINING✍️</h1>
+      <h1>{ t('addTrainingIcon') } </h1>
 
       <label>
-        Training Title:
+        {t('trainingTitle')}
         <input
           className="inputAddTraining"
           type="text"
@@ -56,7 +58,7 @@ export default function AddTraining() {
       </label>
       <br />
       <label>
-        Exercise:
+      {t('exercise')}
         <input
           className="inputAddTraining"
           type="text"
@@ -66,7 +68,7 @@ export default function AddTraining() {
       </label>
       <br />
       <label>
-        Weight (kg):
+       {t('weight')}
         <input
           className="inputAddTraining"
           type="number"
@@ -76,7 +78,7 @@ export default function AddTraining() {
       </label>
       <br />
       <label>
-        Repetitions:
+        {t('repetitions')}
         <input
           className="inputAddTraining"
           type="number"
@@ -86,7 +88,7 @@ export default function AddTraining() {
       </label>
       <br />
       <label>
-        Sets:
+        {t('sets')}
         <input
           className="inputAddTraining"
           type="number"
@@ -96,13 +98,13 @@ export default function AddTraining() {
       </label>
       <br />
       <button className="buttonForm" onClick={handleAddExercise}>
-        Add Exercise
+        {t('addExercise')}
       </button>
       <br />
       <br />
       <Toaster richColors  />
       <button className="buttonForm" onClick={handleAddTraining}>
-        Add Training
+       {t('addTraining')}
       </button>
       <br />
       <br />
@@ -110,10 +112,10 @@ export default function AddTraining() {
         <table className="exercisesTable">
           <thead>
             <tr>
-              <th>Exercise</th>
-              <th>Weight</th>
+              <th>{t('exercise')}</th>
+              <th>{t('weight')}</th>
               <th>Reps</th>
-              <th>Sets</th>
+              <th>{t('sets')}</th>
             </tr>
           </thead>
           <tbody>
@@ -130,7 +132,7 @@ export default function AddTraining() {
       </section>
       <br />
       <div className="predefinedTrainings">
-        <h2>Choose a Predefined Training:</h2>
+        <h2> {t('choosePredefined')} </h2>
         <ul>
           {predefinedTrainings.map((predefinedTraining, index) => (
             <li className="predefinedTrainingsList" key={index}>
@@ -144,7 +146,8 @@ export default function AddTraining() {
         </ul>
       </div>
       <br />
-      <Link to="/workouts" className="workoutsLink">View Workouts👉</Link>
+      <Link to="/workouts" className="workoutsLink"> {t('viewWorkouts')} </Link>
     </div>
+
   );
 }

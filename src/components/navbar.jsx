@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import LanguageSelector from "./languageSelector";
+import { useTranslation } from "react-i18next";
 import '../styles/navbar.css';
 
 const Navbar = () => {
+
+  const { t } = useTranslation();
+
   const [isMobile, setIsMobile] = useState(false);
 
   const handleToggle = () => {
@@ -24,9 +28,9 @@ const Navbar = () => {
 
       <div className={`nav-links ${isMobile ? 'open' : ''}`}>
       <hr className="hrMobile"></hr>
-        <Link to="/addtraining" onClick={handleToggle} ><ion-icon name="add-outline"></ion-icon> Add Training</Link>
+        <Link to="/addtraining" onClick={handleToggle} >{t('addWorkouts')}</Link>
         <hr className="hrMobile"></hr>
-        <Link to="/workouts" onClick={handleToggle} className="lastLinkNavbar"><ion-icon name="barbell-outline"></ion-icon> My Workouts </Link>
+        <Link to="/workouts" onClick={handleToggle} className="lastLinkNavbar">{t('myWorkouts')}</Link>
         <hr className="hrMobile"></hr>
         <LanguageSelector />
       </div>

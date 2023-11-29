@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import '../styles/letsWorkout.css'
 import { Link } from 'react-router-dom';
 import { Toaster, toast } from 'sonner'
+import { useTranslation } from 'react-i18next';
 
 export default function LetsWorkout() {
   const [selectedExercises, setSelectedExercises] = useState([]);
   const [selectedTraining, setSelectedTraining] = useState(null);
   const [allExercisesCompleted, setAllExercisesCompleted] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const selectedTrainingIndex = localStorage.getItem('selectedTrainingIndex');
@@ -48,10 +50,10 @@ export default function LetsWorkout() {
   if (!selectedTraining) {
     return (
       <div className='letsWorkoutContainer'>
-        Go to Workouts to choose another workout.
+        {t('goToChoose')}
         <br />
         <br />
-        <Link to="/workouts" className='workoutsLink'>Workouts</Link>
+        <Link to="/workouts" className='workoutsLink'> {t('myWorkouts')} </Link>
     
       </div>
     )
@@ -59,7 +61,7 @@ export default function LetsWorkout() {
 
   return (
     <div className='letsWorkoutContainer'>
-      <h3>Workout Tracking</h3>
+      <h3>{t('workoutTracking')}</h3>
       <h4>{selectedTraining.title}</h4>
       <hr />
       <form>
@@ -67,10 +69,10 @@ export default function LetsWorkout() {
     <thead>
       <tr>
         <th></th>
-        <th>Exercise</th>
-        <th>Weight</th>
+        <th>{t('exercise')}</th>
+        <th>{t('weight')}</th>
         <th>Reps</th>
-        <th>Sets</th>
+        <th>{t('sets')}</th>
       </tr>
     </thead>
     <tbody>
@@ -83,7 +85,7 @@ export default function LetsWorkout() {
               type="checkbox"
               checked={selectedExercises.includes(exercise)}
               onChange={() => handleCheckboxChange(exercise)}
-              onClick={() => toast('Exercise completed')}
+              onClick={() => toast(t('exerciseCompleted'))}
             />
           </td>
           <td>
@@ -117,7 +119,7 @@ export default function LetsWorkout() {
       {allExercisesCompleted && (
         <div>
 
-          <button className="buttonForm endTrainingButton" onClick={handleFinishTraining}>End Training</button>
+          <button className="buttonForm endTrainingButton" onClick={handleFinishTraining}> {t('endTraining')} </button>
           
         </div>
       )}

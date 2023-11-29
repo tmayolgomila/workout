@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/workOuts.css';
 import { Toaster, toast } from 'sonner';
+import { useTranslation } from 'react-i18next';
 
 export default function WorkOuts() {
   const navigate = useNavigate();
@@ -9,6 +10,7 @@ export default function WorkOuts() {
   const [editingIndex, setEditingIndex] = useState(null);
   const [editedTitle, setEditedTitle] = useState('');
   const [editedExercises, setEditedExercises] = useState([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const existingTrainings = JSON.parse(localStorage.getItem('trainings')) || [];
@@ -70,7 +72,7 @@ export default function WorkOuts() {
       setEditingIndex(null);
       setEditedTitle('');
       setEditedExercises([]);
-      toast.info('Workout deleted')
+      toast.info(t('workoutDeleted'))
     } else {
       // Handle cancel deletion
     }
@@ -84,19 +86,19 @@ export default function WorkOuts() {
     const updatedExercises = [...editedExercises];
     updatedExercises.splice(exerciseIndex, 1);
     setEditedExercises(updatedExercises);
-    toast.info('Exercise deleted')
+    toast.info(t('exerciseDeleted'))
   };
 
   return (
     <div className='workoutsContainer'>
       <Toaster richColors/>
-      <h1>My Workouts 💪</h1>
+      <h1>{t('myWorkoutsIcon')}</h1>
       {trainings.map((training, index) => (
         <div key={index}>
           {editingIndex === index ? (
             <div>
               <label>
-                Edit Title:
+                {t('editTitle')}
                 <input
                   className='inputWorkoutTitle'
                   type="text"
@@ -109,10 +111,10 @@ export default function WorkOuts() {
               <table className="exercisesTable">
                 <thead>
                   <tr>
-                    <th>Exercise</th>
-                    <th>Weight</th>
+                    <th>{t('exercise')}</th>
+                    <th>{t('weight')}</th>
                     <th>Reps</th>
-                    <th>Sets</th>
+                    <th>{t('sets')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -161,10 +163,10 @@ export default function WorkOuts() {
               </table>
   
               <div className='buttonSection'>
-                <button className='workoutButton' onClick={handleSaveEdit}>Save Edit</button>
-                  <button className='workoutButton' onClick={handleAddExercise}>Add Exercise</button>
-                <button className='workoutButton' onClick={handleCancelEdit}>Cancel</button>
-                <button className='workoutButton delete' onClick={() => handleDeleteTraining(index)}>Delete Training</button>
+                <button className='workoutButton' onClick={handleSaveEdit}> {t('saveEdit')} </button>
+                  <button className='workoutButton' onClick={handleAddExercise}> {t('addExercise')} </button>
+                <button className='workoutButton' onClick={handleCancelEdit}> {t('cancel')} </button>
+                <button className='workoutButton delete' onClick={() => handleDeleteTraining(index)}> {t('deleteTraining')} </button>
               </div>
             </div>
           ) : (
@@ -173,10 +175,10 @@ export default function WorkOuts() {
               <table className="exercisesTable">
                 <thead>
                   <tr>
-                    <th>Exercise</th>
-                    <th>Weight</th>
+                    <th>{t('exercise')}</th>
+                    <th>{t('weight')}</th>
                     <th>Reps</th>
-                    <th>Sets</th>
+                    <th>{t('sets')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -192,16 +194,16 @@ export default function WorkOuts() {
               </table>
   
               <div className='buttonSection'>
-                <button className='workoutButton' onClick={() => handleEdit(index)}>Edit</button>
-                <button className='workoutButton' onClick={() => handleSelectTraining(index)}>Select</button>
-                <button className='workoutButton delete' onClick={() => handleDeleteTraining(index)}>Delete</button>
+                <button className='workoutButton' onClick={() => handleEdit(index)}>{t('edit')}</button>
+                <button className='workoutButton' onClick={() => handleSelectTraining(index)}>{t('select')}</button>
+                <button className='workoutButton delete' onClick={() => handleDeleteTraining(index)}>{t('delete')}</button>
               </div>
             </div>
           )}
         </div>
       ))}
       <br />
-      <Link to="/addtraining" className='workoutsLink'>ADD Trainings</Link>
+      <Link to="/addtraining" className='workoutsLink'> {t('addTraining')} </Link>
     </div>
   );
   
