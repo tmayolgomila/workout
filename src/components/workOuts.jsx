@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/workOuts.css';
+import { Toaster, toast } from 'sonner';
 
 export default function WorkOuts() {
   const navigate = useNavigate();
@@ -69,6 +70,7 @@ export default function WorkOuts() {
       setEditingIndex(null);
       setEditedTitle('');
       setEditedExercises([]);
+      toast.info('Workout deleted')
     } else {
       // Handle cancel deletion
     }
@@ -82,10 +84,12 @@ export default function WorkOuts() {
     const updatedExercises = [...editedExercises];
     updatedExercises.splice(exerciseIndex, 1);
     setEditedExercises(updatedExercises);
+    toast.info('Exercise deleted')
   };
 
   return (
     <div className='workoutsContainer'>
+      <Toaster richColors/>
       <h1>My Workouts 💪</h1>
       {trainings.map((training, index) => (
         <div key={index}>

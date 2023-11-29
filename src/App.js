@@ -7,6 +7,7 @@ import Home from './components/home';
 import Navbar from './components/navbar';
 import LetsWorkout from './components/letsWorkout';
 
+
 function App() {
   return (
     <>
