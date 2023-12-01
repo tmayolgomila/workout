@@ -35,7 +35,8 @@ const resources = {
       delete:'Delete',
       exerciseDeleted:'Exercise deleted',
       workoutDeleted:'Workout deleted',
-      goToChoose:'Go to Workouts to choose another workout.'
+      goToChoose:'Go to Workouts to choose another workout.',
+      myProgress:'My Progress'
 
     },
   },
@@ -69,7 +70,8 @@ const resources = {
       delete:'Eliminar',
       exerciseDeleted:'Ejercicio eliminado',
       workoutDeleted:'Entreno eliminado',
-      goToChoose:'Ve a tus entrenamientos y selecciona uno.'
+      goToChoose:'Ve a tus entrenamientos y selecciona uno.',
+      myProgress:'Mi Progreso'
     },
   },
 };

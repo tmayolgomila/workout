@@ -30,7 +30,9 @@ const Navbar = () => {
       <hr className="hrMobile"></hr>
         <Link to="/addtraining" onClick={handleToggle} >{t('addWorkouts')}</Link>
         <hr className="hrMobile"></hr>
-        <Link to="/workouts" onClick={handleToggle} className="lastLinkNavbar">{t('myWorkouts')}</Link>
+        <Link to="/workouts" onClick={handleToggle} >{t('myWorkouts')}</Link>
+        <hr className="hrMobile"></hr>
+        <Link to="/myprogress" onClick={handleToggle} className="lastLinkNavbar">{t('myProgress')}</Link>
         <hr className="hrMobile"></hr>
         <LanguageSelector />
       </div>
