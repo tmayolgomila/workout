@@ -30,6 +30,8 @@ export default function LetsWorkout() {
       selectedTraining.exercises.every((exercise) => selectedExercises.includes(exercise));
 
     setAllExercisesCompleted(areAllExercisesCompleted);
+
+    localStorage.setItem('workoutProgress', JSON.stringify(selectedExercises));
   }, [selectedExercises, selectedTraining]);
 
   const handleCheckboxChange = (exercise) => {
@@ -43,8 +45,20 @@ export default function LetsWorkout() {
   };
 
   const handleFinishTraining = () => {
+
+    if (selectedExercises.length > 0 && selectedTraining) {
+ 
+      const oldWorkout = JSON.parse(localStorage.getItem('oldWorkout')) || {};
+  
+  
+      oldWorkout[selectedTraining.title] = selectedExercises;
+  
+     
+      localStorage.setItem('oldWorkout', JSON.stringify(oldWorkout));
+    }
+
     setSelectedTraining(null);
-    setSelectedExercises([]);
+    //setSelectedExercises([]);
   };
 
   if (!selectedTraining) {
