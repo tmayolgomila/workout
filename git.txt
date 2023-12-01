@@ -1,0 +1,57 @@
+Crear una nueva rama:
+Clona tu repositorio:
+
+Crea una nueva rama:
+
+bash
+
+git checkout -b nombre-de-tu-nueva-rama
+Esto crea y cambia a una nueva rama con el nombre especificado.
+
+Realiza tus cambios y commits:
+Haz tus cambios, añade archivos, y realiza commits en la nueva rama.
+
+bash
+
+git add .
+git commit -m "Descripción de tus cambios"
+Empuja la nueva rama a GitHub:
+
+bash
+
+git push origin nombre-de-tu-nueva-rama
+Fusionar cambios en la rama main:
+Cambiar a la rama main:
+
+bash
+
+git checkout main
+Actualizar la rama main con los últimos cambios:
+
+bash
+
+git pull origin main
+Fusionar tu nueva rama en main:
+
+bash
+
+git merge nombre-de-tu-nueva-rama
+Si hay conflictos, Git te pedirá que los resuelvas.
+
+Empujar los cambios fusionados a GitHub:
+
+bash
+
+git push origin main
+Eliminar la rama local (opcional):
+Si ya no necesitas la rama local después de fusionarla en main, puedes eliminarla:
+
+bash
+
+git branch -d nombre-de-tu-nueva-rama
+Eliminar la rama remota (opcional):
+Si deseas eliminar la rama también en GitHub:
+
+bash
+
+git push origin --delete nombre-de-tu-nueva-rama
