@@ -70,7 +70,7 @@ export default function LetsWorkout() {
       <tr>
         <th></th>
         <th>{t('exercise')}</th>
-        <th>{t('weight')}</th>
+        <th>{t('simpleWeight')}</th>
         <th>Reps</th>
         <th>{t('sets')}</th>
       </tr>

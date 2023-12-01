@@ -1,0 +1,17 @@
+
+.langSelectContainer{
+    display: flex!important;
+    justify-content: space-between!important;
+    gap: 1em;
+}
+
+.buttonForm .langSelector{
+    width: 100px;
+    height: 30px;
+}
+#buttonEnglish{
+border: 1px solid white;
+}
+#buttonSpanish{
+    border: 1px solid white;
+}

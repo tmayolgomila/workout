@@ -112,7 +112,7 @@ export default function WorkOuts() {
                 <thead>
                   <tr>
                     <th>{t('exercise')}</th>
-                    <th>{t('weight')}</th>
+                    <th>{t('simpleWeight')}</th>
                     <th>Reps</th>
                     <th>{t('sets')}</th>
                   </tr>
@@ -176,7 +176,7 @@ export default function WorkOuts() {
                 <thead>
                   <tr>
                     <th>{t('exercise')}</th>
-                    <th>{t('weight')}</th>
+                    <th>{t('simpleWeight')}</th>
                     <th>Reps</th>
                     <th>{t('sets')}</th>
                   </tr>
