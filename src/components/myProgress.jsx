@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/myProgress.css'
+import BarChart from './barChart';
 
 const MyProgress = () => {
   const [oldWorkout, setOldWorkout] = useState({});
@@ -49,6 +50,7 @@ const saveMetricToLocalStorage = (exerciseName, metric) => {
 
   return (
     <div className='myProgressContainer'>
+      
       <h2>My Progress</h2>
       {Object.entries(oldWorkout).map(([trainingName, exercises], index) => (
         <div key={index}>
@@ -59,17 +61,22 @@ const saveMetricToLocalStorage = (exerciseName, metric) => {
               <ul className='myProgressList'>
                 {exerciseExercises.map((exercise, innerExerciseIndex) => {
                   const metric = calculateMetric(exercise);
-                  saveMetricToLocalStorage(exerciseName, metric); // Guardar la métrica en el localStorage
+                  saveMetricToLocalStorage(exerciseName, metric);
                   return (
-                    <li key={innerExerciseIndex}>
-                      Weight: {exercise.weight}, Reps: {exercise.repetitions}, Sets: {exercise.sets}
-                      <br />
-                      Metric: <strong>{metric}</strong> {/* Muestra la métrica calculada */}
+                    <li key={innerExerciseIndex} className='metricList'>
+
+                      Metric: <strong>{metric}</strong>
+
                     </li>
+
                   );
                 })}
               </ul>
+
+              <BarChart exerciseMetrics={exerciseExercises.map(exercise => calculateMetric(exercise))} />
+
             </div>
+            
           ))}
         </div>
       ))}
