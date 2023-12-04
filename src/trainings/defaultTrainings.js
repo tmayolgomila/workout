@@ -30,7 +30,7 @@ const predefinedTrainings = [
           { exercise: "3-Peso muerto", weight: 65, repetitions: 12, sets: 4 },
           { exercise: "3-Press militar", weight: 50, repetitions: 8, sets: 4 },
           { exercise: "3-Elevaciones laterales", weight: 10, repetitions: 12, sets: 4 },
-          { exercise: "4-Elevaciones barra", weight: 20, repetitions: 10, sets: 4 },
+          { exercise: "3-Elevaciones barra", weight: 20, repetitions: 10, sets: 4 },
         ],
       },
       {
