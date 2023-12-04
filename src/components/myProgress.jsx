@@ -11,10 +11,10 @@ const MyProgress = () => {
 
   const calculateMetric = (exercise) => {
     if (exercise.weight > 0) {
-      // Si hay peso especificado, calcular la Carga Total Levantada
+
       return exercise.weight * exercise.repetitions * exercise.sets;
     } else {
-      // Si no hay peso o es 0, calcular el Volumen de Entrenamiento (Reps x Sets)
+
       return exercise.repetitions * exercise.sets;
     }
   };

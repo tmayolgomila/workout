@@ -48,7 +48,6 @@ export default function LetsWorkout() {
     if (selectedExercises.length > 0 && selectedTraining) {
       const oldWorkout = JSON.parse(localStorage.getItem('oldWorkout')) || {};
   
-      // Si ya existe un array de ejercicios para este entrenamiento, úsalo; de lo contrario, crea uno nuevo
       const existingExercises = oldWorkout[selectedTraining.title] || [];
       oldWorkout[selectedTraining.title] = [...existingExercises, ...selectedExercises];
   
