@@ -9,6 +9,8 @@ export default function Home(){
 
     return(
         <div className="homeContainer">
+
+                <p className="homeAlert">{t('homeAlert')}</p>
       
 
             <Link to="/addtraining" className="buttonForm firstButtonHome">
@@ -28,6 +30,7 @@ export default function Home(){
 
         <div className="homeDescriptionContainer" >
             <p className="homeDescription">{t('homeDescription')}</p>
+           
         </div>
         
 
