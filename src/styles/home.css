@@ -14,3 +14,10 @@
     display: flex;
     justify-content: center;
 }
+.homeDescriptionContainer{
+    text-align: center;
+    padding: 1em;
+}
+.homeDescription{
+    text-align: left;
+}

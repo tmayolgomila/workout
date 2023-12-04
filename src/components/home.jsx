@@ -22,6 +22,16 @@ export default function Home(){
             {t('myWorkouts')}
             </Link>
 
+            <Link to="/myprogress" className="buttonForm buttonHome">
+            {t('myProgress')}
+            </Link>
+
+        <div className="homeDescriptionContainer" >
+            <p className="homeDescription">{t('homeDescription')}</p>
+        </div>
+        
+
+
         </div>
         )
 }

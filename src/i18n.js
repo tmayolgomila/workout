@@ -35,7 +35,9 @@ const resources = {
       exerciseDeleted:'Exercise deleted',
       workoutDeleted:'Workout deleted',
       goToChoose:'Go to Workouts to choose another workout.',
-      myProgress:'My Progress'
+      myProgress:'My Progress',
+      homeDescription: "The functionality of MW is described as follows: you have the option to incorporate your own training programs or use the default ones if you are just starting, with the purpose of monitoring them on a weekly basis. You can make edits in the 'My Workouts' section and complete the sessions in the 'Select' section. This allows you to visualize your progress in each exercise through the metrics in the 'My Progress' section, facilitating continuous improvement and balance in your routines.",
+
 
     },
   },
@@ -69,7 +71,9 @@ const resources = {
       exerciseDeleted:'Ejercicio eliminado',
       workoutDeleted:'Entreno eliminado',
       goToChoose:'Ve a tus entrenamientos y selecciona uno.',
-      myProgress:'Mi Progreso'
+      myProgress:'Mi Progreso',
+      homeDescription: "La operatividad de MW se explica de la siguiente manera: tienes la posibilidad de integrar tus propios programas de entrenamiento o utilizar los preestablecidos si estás comenzando, con el fin de darles seguimiento semanalmente. Puedes realizar modificaciones en la sección 'Mis Entrenos' y llevar a cabo las sesiones en la sección 'Entrenar'. Esto te brinda la oportunidad de observar tu progreso en cada ejercicio mediante las métricas de la sección 'Mi Progreso', facilitando la consecución de mejoras continuas y el establecimiento de un equilibrio en tus rutinas.",
+
     },
   },
 };
