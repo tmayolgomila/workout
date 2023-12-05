@@ -33,20 +33,27 @@ const MyProgress = () => {
     return organizedByExercise;
   };
 
-const saveMetricToLocalStorage = (exerciseName, metric) => {
-  const storedMetrics = JSON.parse(localStorage.getItem('exerciseMetrics')) || {};
-  if (!storedMetrics[exerciseName]) {
-    storedMetrics[exerciseName] = [];
-  }
-
-  // Verificar si la métrica ya existe para este ejercicio antes de agregarla
-  const existingMetricIndex = storedMetrics[exerciseName].findIndex((storedMetric) => storedMetric === metric);
-  if (existingMetricIndex === -1) {
-    storedMetrics[exerciseName].push(metric);
-    localStorage.setItem('exerciseMetrics', JSON.stringify(storedMetrics));
-  }
-};
-
+  const saveMetricToLocalStorage = (trainingName, exerciseName, metric) => {
+    const storedMetrics = JSON.parse(localStorage.getItem('exerciseMetrics')) || {};
+    
+    if (!storedMetrics[trainingName]) {
+      storedMetrics[trainingName] = {};
+    }
+  
+    if (!storedMetrics[trainingName][exerciseName]) {
+      storedMetrics[trainingName][exerciseName] = [];
+    }
+  
+    const existingMetricIndex = storedMetrics[trainingName][exerciseName].findIndex(
+      (storedMetric) => storedMetric === metric
+    );
+  
+    if (existingMetricIndex === -1) {
+      storedMetrics[trainingName][exerciseName].push(metric);
+      localStorage.setItem('exerciseMetrics', JSON.stringify(storedMetrics));
+    }
+  };
+  
 
   return (
     <div className='myProgressContainer'>
@@ -61,7 +68,7 @@ const saveMetricToLocalStorage = (exerciseName, metric) => {
               <ul className='myProgressList'>
                 {exerciseExercises.map((exercise, innerExerciseIndex) => {
                   const metric = calculateMetric(exercise);
-                  saveMetricToLocalStorage(exerciseName, metric);
+                  saveMetricToLocalStorage(trainingName, exerciseName, metric);
                   return (
                     <li key={innerExerciseIndex} className='metricList'>
 
