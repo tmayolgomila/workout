@@ -1,6 +1,6 @@
 .myProgressContainer{
     padding: 1em;
-
+    display: none;
 }
 .myProgressList{
     list-style: none;
