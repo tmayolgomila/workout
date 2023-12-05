@@ -6,6 +6,7 @@ const MyProgress = () => {
   const [oldWorkout, setOldWorkout] = useState({});
 
   useEffect(() => {
+    localStorage.removeItem('exerciseMetrics');
     const storedOldWorkout = JSON.parse(localStorage.getItem('oldWorkout')) || {};
     setOldWorkout(storedOldWorkout);
   }, []);
