@@ -11,6 +11,7 @@ export default function LetsWorkout() {
   const { t } = useTranslation();
 
   useEffect(() => {
+    localStorage.removeItem('workoutProgress');
     const selectedTrainingIndex = localStorage.getItem('selectedTrainingIndex');
 
     if (selectedTrainingIndex !== null) {
