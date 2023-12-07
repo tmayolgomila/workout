@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/myProgress.css';
 import BarChart from '../components/barChart';
+import { useTranslation } from 'react-i18next';
 
 const MyProgress = () => {
+
+  const { t } = useTranslation(); 
+
   const [oldWorkout, setOldWorkout] = useState({});
 
   useEffect(() => {
@@ -56,7 +60,7 @@ const MyProgress = () => {
 
   return (
     <div className='myProgressContainer'>
-      <h2>My Progress</h2>
+     <h2>{t('myProgress')}</h2>
       {Object.entries(oldWorkout).map(([trainingName, exercises], index) => (
         <div key={index}>
           <h3>{trainingName}</h3>

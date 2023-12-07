@@ -10,7 +10,6 @@ export default function Home(){
     return(
         <div className="homeContainer">
 
-                <p className="homeAlert">{t('homeAlert')}</p>
       
 
             <Link to="/addtraining" className="buttonForm firstButtonHome">
