@@ -9,7 +9,6 @@ const BarChart = ({ trainingName, exerciseData }) => {
 
     const uniqueExercises = [...new Set(exerciseData.map((exercise) => exercise.exerciseName))];
 
-    // Obtener la longitud del primer ejercicio
     const firstExerciseLength = exerciseData.find((exercise) => exercise.exerciseName === uniqueExercises[0])?.metric.length || 0;
 
     const option = {
@@ -48,13 +47,12 @@ const BarChart = ({ trainingName, exerciseData }) => {
         type: 'bar',
         data: exerciseData
           .filter((exercise) => exercise.exerciseName === exerciseName)
-          .flatMap((exercise) => exercise.metric), // Utilizar flatMap para unir todas las métricas en un solo array
+          .flatMap((exercise) => exercise.metric),
       })),
     };
 
     chart.setOption(option);
 
-    // Clean up the chart when the component is unmounted
     return () => {
       chart.dispose();
     };

@@ -6,10 +6,11 @@ const MyProgress = () => {
   const [oldWorkout, setOldWorkout] = useState({});
 
   useEffect(() => {
-    localStorage.removeItem('exerciseMetrics');
+    // Solo recupera los datos antiguos de entrenamiento
     const storedOldWorkout = JSON.parse(localStorage.getItem('oldWorkout')) || {};
     setOldWorkout(storedOldWorkout);
   }, []);
+  
 
   const calculateMetric = (exercise) => {
     if (exercise.weight > 0) {

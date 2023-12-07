@@ -47,15 +47,18 @@ export default function LetsWorkout() {
   const handleFinishTraining = () => {
     if (selectedExercises.length > 0 && selectedTraining) {
       const oldWorkout = JSON.parse(localStorage.getItem('oldWorkout')) || {};
-  
       const existingExercises = oldWorkout[selectedTraining.title] || [];
       oldWorkout[selectedTraining.title] = [...existingExercises, ...selectedExercises];
-  
+    
       localStorage.setItem('oldWorkout', JSON.stringify(oldWorkout));
     }
   
+    // Limpiar los datos de progreso
+    localStorage.removeItem('workoutProgress');
+  
     setSelectedTraining(null);
   };
+  
 
   if (!selectedTraining) {
     return (
