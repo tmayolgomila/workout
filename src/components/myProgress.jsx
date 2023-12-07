@@ -10,7 +10,7 @@ const MyProgress = () => {
   const [oldWorkout, setOldWorkout] = useState({});
 
   useEffect(() => {
-    // Solo recupera los datos antiguos de entrenamiento
+
     const storedOldWorkout = JSON.parse(localStorage.getItem('oldWorkout')) || {};
     setOldWorkout(storedOldWorkout);
   }, []);

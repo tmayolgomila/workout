@@ -47,20 +47,16 @@ export default function LetsWorkout() {
 
   const handleFinishTraining = () => {
     if (selectedExercises.length > 0 && selectedTraining) {
-      // Obtener el objeto de entrenamiento existente en el localStorage
+
       const oldWorkout = JSON.parse(localStorage.getItem('oldWorkout')) || {};
   
-      // Obtener o crear un arreglo para el título de entrenamiento actual
       const existingExercises = oldWorkout[selectedTraining.title] || [];
   
-      // Agregar los ejercicios seleccionados al arreglo correspondiente
       oldWorkout[selectedTraining.title] = [...existingExercises, ...selectedExercises];
   
-      // Guardar el objeto de entrenamiento actualizado en el localStorage
       localStorage.setItem('oldWorkout', JSON.stringify(oldWorkout));
     }
   
-    // Limpiar los datos de progreso
     localStorage.removeItem('workoutProgress');
   
     setSelectedTraining(null);
@@ -74,7 +70,9 @@ export default function LetsWorkout() {
         {t('goToChoose')}
         <br />
         <br />
-        <Link to="/workouts" className='workoutsLink'> {t('myWorkouts')} </Link>
+        <Link to="/workouts" className='buttonForm'> {t('myWorkouts')} </Link>
+
+        <Link to="/myprogress" className='buttonForm endTrainingButton'>{t('myProgress')}</Link>
     
       </div>
     )
