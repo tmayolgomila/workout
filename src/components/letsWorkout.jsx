@@ -17,7 +17,6 @@ export default function LetsWorkout() {
     if (selectedTrainingIndex !== null) {
       const index = parseInt(selectedTrainingIndex, 10);
       const trainings = JSON.parse(localStorage.getItem('trainings')) || [];
-
       setSelectedTraining(trainings[index]);
     }
 
@@ -135,13 +134,13 @@ export default function LetsWorkout() {
   </table>
 </form>
 
-      {allExercisesCompleted && (
+
         <div>
 
           <button className="buttonForm endTrainingButton" onClick={handleFinishTraining}> {t('endTraining')} </button>
           
         </div>
-      )}
+
     </div>
   );
 }
