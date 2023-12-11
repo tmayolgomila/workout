@@ -134,13 +134,13 @@ export default function LetsWorkout() {
   </table>
 </form>
 
-
+    {allExercisesCompleted && (
         <div>
 
           <button className="buttonForm endTrainingButton" onClick={handleFinishTraining}> {t('endTraining')} </button>
           
         </div>
-
+    )}
     </div>
   );
 }
