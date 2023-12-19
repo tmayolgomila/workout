@@ -11,8 +11,30 @@ const CreateDiet = () => {
   const [weeklyMenu, setWeeklyMenu] = useState(null);
 
   useEffect(() => {
-    // Aquí puedes trabajar con los datos de usdaData
-    console.log(usdaData); // Muestra los datos en la consola para verificar
+    const foundationFoodsArray = usdaData.FoundationFoods;
+
+    // Supongamos que deseas obtener las calorías del hummus en la primera entrada del array.
+    const hummusData = foundationFoodsArray[0];
+    
+    // Accede a la propiedad 'foodNutrients' dentro de los datos del hummus.
+    const foodNutrients = hummusData.foodNutrients;
+    
+    // Itera a través de los nutrientes para encontrar la información de las calorías (posiblemente utilizando un bucle).
+    let calories = 0;
+    for (const nutrient of foodNutrients) {
+      if (nutrient.nutrient.name === "Energy") {
+        // Convierte kilojulios a calorías multiplicando por 0.239.
+        calories = nutrient.amount * 0.239;
+        break; // Rompe el bucle una vez que encuentres las calorías.
+      }
+    }
+
+    calories = Math.floor(calories);
+    
+    // Ahora, 'calories' contendrá la cantidad de calorías del hummus.
+    console.log("Calorías del hummus:", calories);
+    console.log(usdaData)
+    
   }, []);
 
   const calculateCalories = () => {
